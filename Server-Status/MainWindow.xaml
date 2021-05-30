@@ -5,8 +5,30 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Server_Status"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="254" Width="410">
     <Grid Background="{StaticResource Dark}">
-        
+        <TextBox x:Name="txtUrl" Height="23" Margin="10,24,10,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
+        <Label Content="Enter a Url" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Top" Foreground="White"/>
+        <Button x:Name="btnAdd" Content="Add" HorizontalAlignment="Left" Margin="10,52,0,0" VerticalAlignment="Top" Width="75" Click="btnAdd_Click"/>
+        <DataGrid x:Name="lstServers" CanUserResizeColumns="True" CanUserResizeRows="False" AutoGenerateColumns="False" Margin="10,77,10,10" ItemsSource="{Binding IsAsync=true}" IsReadOnly="true" Background="{StaticResource Dark}" HeadersVisibility="Column">
+            <DataGrid.Columns>
+                <DataGridTemplateColumn IsReadOnly="true" Header="" Width="20">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Image Source="{Binding Path=Status}" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTextColumn Header="Url" Width="250" Binding="{Binding URL}"/>
+                <DataGridTextColumn Header="Delta Time" Width="102"  Binding="{Binding UpdateTime}"/>
+            </DataGrid.Columns>
+            <DataGrid.RowStyle>
+                <Style TargetType="DataGridRow">
+                    <Setter Property="Background" Value="{StaticResource Dark}" />
+                    <Setter Property="Foreground" Value="White"></Setter>
+                </Style>
+            </DataGrid.RowStyle>
+        </DataGrid>
+
     </Grid>
 </Window>
